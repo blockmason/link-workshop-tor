@@ -1,50 +1,50 @@
 [
   {
     "id": 0,
-    "name": "Stanley Park",
-    "picture": "images/stanleypark.png",
-    "fact": "Archaeological evidence suggests a human presence in the park dating back more than 3,000 years."
+    "name": "CN Tower",
+    "picture": "images/skydome_cntower.png",
+    "fact": "At 553 meters (1,815 ft), one of the tallest free-standing structures in the world"
   },
   {
     "id": 1,
-    "name": "Grouse Mountain",
-    "picture": "images/grouse.png",
-    "fact": "Named in Oct. 1894 by the first hikers to reach the peak, after the sooty (blue) grouse, a game bird in the area."
+    "name": "Casa Loma",
+    "picture": "images/casaloma.png",
+    "fact": "Only full sized castle in North America consisting of Edwardian decor, secret passageways, and elaborately decorated rooms"
   },
   {
     "id": 2,
-    "name": "Chinatown",
-    "picture": "images/chinatown.png",
-    "fact": "The China Gate on Pender Street was donated to the City of Vancouver by the Government of the People's Republic of China following the Expo 86 world's fair."
+    "name": "City Hall",
+    "picture": "images/cityhall.png",
+    "fact": "One of the city's most distinctive landmarks, with the public space Nathan Phillips Square in front"
   },
   {
     "id": 3,
-    "name": "Lookout - Harbour Centre",
-    "picture": "images/stanleypark.png",
-    "fact": "Opened in 1977, with the observation deck at 551 ft (168m) above street level."
+    "name": "Dundas Square",
+    "picture": "images/dundas_sq.png",
+    "fact": "The city's newest and flashiest public square"
   },
   {
     "id": 4,
-    "name": "Science World",
-    "picture": "images/science_world.png",
-    "fact": "The Buckminster Fuller-inspired geodesic dome was designed by Expo 86's chief architect Bruno Freschi to serve as that fair's Expo Centre."
+    "name": "Toronto Islands",
+    "picture": "images/toronto_islands.png",
+    "fact": "These islands form part of the largest car-free urban communities in North America"
   },
   {
     "id": 5,
-    "name": "Gastown",
-    "picture": "images/gastown.png",
-    "fact": "Vancouver's first downtown core named after 'Gassy' Jack Deighton, a Yorkshire seaman, steamboat captain and barkeep who arrived in 1867 to open the area's first saloon."
+    "name": "Hockey Hall of Fame",
+    "picture": "images/hockeyhalloffame.png",
+    "fact": "Hall of Fame and museum holding exhibits about players, teams, NHL records, memorabilia and the Stanley Cup"
   },
   {
     "id": 6,
-    "name": "Granville Island",
-    "picture": "images/granvilleisland.png",
-    "fact": "The very first tenant, B.C. Equipment Ltd., built a wood-framed machine shop, clad on all sides in corrugated tin, at the Island's western end. Today the same structure houses part of the Granville Island Public Market."
+    "name": "Toronto Public Library",
+    "picture": "images/tpl.png",
+    "fact": "With 12 million items and 100 branches, it is one of the largest neighbourhood-based library systems in the world"
   },
   {
     "id": 7,
-    "name": "H.R. MacMillan Space Centre",
-    "picture": "images/spacecenter.png",
-    "fact": "Founded in 1968 as an astronomy museum along with limve demonstrations on science."
+    "name": "Caribana",
+    "picture": "images/caribana.png",
+    "fact": "The Toronto Caribbean Carnival is billed as North America's largest street festival"
   }
 ]
