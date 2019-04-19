@@ -4,13 +4,12 @@ In this activity, we will learn about Smart Contract design and use Link to depl
 
 ## Exercise
 This activity will require you to:
-* Use Solidity (https://solidity.readthedocs.io/en/v0.5.4/) to create a basic 'Ownership' smart contract
+* Use Solidity (https://solidity.readthedocs.io/en/v0.5.7/) to create a basic 'Ownership' smart contract
 * Use Remix (https://remix.ethereum.org) to test and validate the smart contract
-* Use Link (https://mason.link) to deploy the smart contract to the Link private network
-* Use Link to create smart contract APIs to be used by a web app. 
+* Use Link (https://mason.link) to interact with the smart contract on the Link private network
 
 ## General activity notes
-* It is expected workshop participants have some familiarity with Solidity. This workshop will primarily cover 'types' of Solidity objects (https://solidity.readthedocs.io/en/v0.5.4/types.html)
+* It is expected workshop participants have some familiarity with Solidity. This workshop will primarily cover 'types' of Solidity objects (https://solidity.readthedocs.io/en/v0.5.7/types.html)
 * A dedicate `getOwners()` function is used instead of the automated getter that comes with the public declaration of the array variable `ownerOf` because the latter requires an array index to be passed to return a single value whereas the former will return the entire array.
 * The Link private network is Link's own internal blockchain.
 
@@ -33,13 +32,14 @@ This activity will require you to:
   * Underflows / Overflows
   * Take compiler warnings seriously!
 * Use of an 'authority' to sign off on transactions
+* Events (https://solidity.readthedocs.io/en/v0.5.7/contracts.html#events)
 
 ### Create 'Ownership' Smart Contract
 > Copy the following smart contract code into the Remix browser IDE for this part of the exericse.
 
 The skeleton of the Ownership contract is:
 ```
-pragma solidity 0.5.4;
+pragma solidity ^0.5.7;
 
 contract Ownership {
 	// Add some state variables
@@ -48,7 +48,7 @@ contract Ownership {
         // Default constructor
     }
 
-    function setOwnership(uint stampId, address owner) public returns (bool) {
+    function setOwnership(uint stampId, address owner) public {
         // Set ownership
     }
 
@@ -58,11 +58,11 @@ contract Ownership {
 }
 ```
 
-First, we want to access the list of owners for a type of asset, say collector stamps. The array index will refer to the asset identifier and the value will be the owner's wallet address. For this example, assume only 8 assets will be owned. 
+First, we want to access the list of owners for a type of asset, say collectible stamps. The array index will refer to the asset identifier and the value will be the owner's wallet address. For this example, assume only 8 assets will be owned. 
 
 > Add the public `ownerOf` state variable and return it in the `getOwners()` function.
 ```
-pragma solidity 0.5.4;
+pragma solidity ^0.5.7;
 
 contract Ownership {
     address[8] public ownerOf;
@@ -71,13 +71,13 @@ contract Ownership {
         // Default constructor
     }
 
-    function setOwnership(<pass some arguments here>) public returns (bool) {
+    function setOwnership(<pass some arguments here>) public {
         // Set ownership
         return true;
     }
 
     function getOwners() public view returns (address[8] memory) {
-		return ownerOf;
+	return ownerOf;
     }
 }
 ```
@@ -87,16 +87,15 @@ To get around this getter limitation, we create a `getOwners()` function and spe
 
 > Next, let's complete the `setOwnership(...)` function. We want to assign a particular stamp ID to an owner address. Additionally, we want to check that the stamp ID is within the array size limits. 
 ```
-function setOwnership(uint stampId, address owner) public returns (bool) {
+function setOwnership(uint stampId, address owner) public {
         require(stampId >= 0 && stampId <=7);
         ownerOf[stampId] = owner;
-        return true;
     }
 ```
 
-> Lastly, we want to set an 'authority' address that initially creates the smart contract and also calls and executes the smart contract functions. For testing in this exercise, we also want to make this authority address publicly available.
+> Then, we want to set an 'authority' address that initially creates the smart contract and also calls and executes the smart contract functions. For testing in this exercise, we also want to make this authority address publicly available.
 ```
-pragma solidity 0.5.4;
+pragma solidity ^0.5.7;
 
 contract Ownership {
     address[8] public ownerOf;
@@ -106,11 +105,10 @@ contract Ownership {
         authority = msg.sender;
     }
 
-    function setOwnership(uint stampId, address owner) public returns (bool) {
+    function setOwnership(uint stampId, address owner) public {
         require(msg.sender == authority);
         require(stampId >= 0 && stampId <=7);
         ownerOf[stampId] = owner;
-        return true;
     }
 
     function getOwners() public view returns (address[8] memory) {
@@ -118,48 +116,104 @@ contract Ownership {
     }
 }
 ```
+Lastly, we want to add an **event emitter** to the `setOwnership` function so that we are told when ownership has been set. Refer to https://solidity.readthedocs.io/en/v0.5.7/contracts.html#events for more details on events.
+
+> Create an `Owned` event object attribute of the Ownership contract that takes in the assetId and ownership address. Emit this event at the end of the `setOwnership` function. 
+```
+pragma solidity ^0.5.7;
+
+contract Ownership {
+    address[8] public ownerOf;
+    address public authority;
+    event Owned(
+        uint indexed _assetId,
+        address indexed _owner
+    );
+
+    constructor() public {
+        authority = msg.sender;
+    }
+
+    function setOwnership(uint stampId, address owner) public {
+        require(msg.sender == authority);
+        require(stampId >= 0 && stampId <=7);
+        ownerOf[stampId] = owner;
+        emit Owned(stampId, owner);
+    }
+
+    function getOwners() public view returns (address[8] memory) {
+        return ownerOf;
+    }
+}
+```
+
 > Check that you can compile this contract in Remix without errors. 
 > 
-![Remix IDE](images/remix_ide.png)
+_TODO:_ Update image once Remix working again![Remix IDE](images/remix_ide.png)
 
-### Deploy Ownership contract to Link Testnet and Create API Project
-We're now going to deploy our Ownership smart contract to a blockchain using Link. 
+### Using Link
+> Log into Link at https://mason.link and setup a sample organization if you haven't done so already.
 
-> Log into Link and setup a sample organization if you haven't done so already. Use the wizard on the Dashboard to create a new project.
+When first logging into Link, you are presented with a `Demo` smart contract that is **automatically deployed** to the Link private network.
 
-> Copy and paste the Solidity code into the area marked `Source Code` and set the display name to `Ownership`. **Check that the code spacing is correct after the copy/paste.** Press `Save`. 
+ ![Link Demo UI](images/link_demo.png)
 
-![New Contract Setup](images/new_contract_link.png)
+The Link Code IDE is in-sync with the API tab where you can see the corresponding API endpoints generated from the smart contract:
 
-> Then, use the `Default Account` Ethereum account, which is automatically set up. 
+![Link Demo API UI](images/link_demo_api.png)
 
-> Use the `Default Network` which is the Link private network.
+The `Client ID` and `Client Secret` shown at the bottom of the screen are used to obtain a auth token used when making the API request. **Note: these values change when changing the display name or making any changes to the contract code** We will get into more details on using the client ID and secret later.
 
-> Use the `Default Network` connector/gateway, which is how Link connects to the network that will store the Ownership contract. 
+#### Interact with the Demo Code
+_TODO:_ Update process here once `yarn add @blockmason/link-sdk` added.
 
-> Next, we need to deploy the Ownership contract to the Default Network. We'll call this deployment `OwnershipGateway`. Keep the `Address` field empty. 
 
-![Contract Deployment Setup](images/new_deployment_link.png)
+#### Deploy Ownership contract to Link Private Network and Create APIs
+We're now going to deploy our Ownership smart contract to a blockchain using Link. **This is incredibly easy!**
 
-> Confirm and deploy your contract. 
+> Copy and paste the `Ownership` contract Solidity code into the Link code IDE and update the project name to `OwnershipLink` 
 
-![Confirm Contract Deployment](images/confirm_deployment_link.png)
+![Link Ownership Code](images/link_ownership_code.png)
 
-Since this is done on the Link private network, the deployment should happen in seconds. When we do this again with the Ethereum public testnet, it'll take about 30-60 seconds. 
+Automatically, your API endpoints will update based on the new smart contract functions. Your `Client ID` and `Client Secret` will also update.
 
-> With your contract now deployed, let's create our API project called `ownership-link`, which will access our Ownership smart contract:
+![Link Ownership APIs](images/link_ownership_apis.png)
 
-![Ownership API](images/ownership_api_link.png)
+**That's it!** Behind the scenes, Link:
+- Automatically compiles and deploys your smart contract to the Link private blockchain
+- Generates the new API endpoints, and updates the API UI with those endpoints ready to be used. 
 
-> Then we create an API consumer which will be using our `ownership-link` APIs. Think of this as the front-end app using the APIs. We'll call this consumer `Collectible Stamps App`. 
+In the last workshop activity, we will see what manual steps are typically required to deploy a smart contract to a blockchain.
 
-![New Consumer](images/api_consumer_link.png)
+#### Interact with the Ownership contract API endpoints
+Similar to how we interacted with the `Demo` contract API above, let's use the console to test a few of the API endpoints before we build out our app in the next activity.
 
-> Finally, we'll use the default generated OAuth 2.0 client secret for our `Collectible Stamps App`. This is how the Stamp App will be allowed to use the `ownership-link` APIs.
+> Try out the `GET /getOwners` endpoint in the console which should return an array of `0x000...` addresses since no owners are currently assigned:
+```
+> let { owners } = await link({ clientId: '<your-client-id>', clientSecret: '<your-client-secret>' }).get('/getOwners');
 
-You should now see the 'OwnershipLink' documentation as follows:
+> owners
+(8) ["0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000"]
+```
 
-![Contract Documentation](images/contract_documentation_link.png)
+Also, let's check out the authority of the smart contract. Recall that the the contract authority is set in the contract constructor with:
+```
+constructor() public {
+    authority = msg.sender;
+}
+```
+With `msg.sender` being Link. You can find the default account/address used by Link under the `Ethereum Accounts` menu item as shown in the following image:
 
-**Congrats! You have successfully deployed the Ownership contract to the Link private network and setup the Link APIs which we'll use in our Collectible Stamps App!**
+![Ethereum Accounts](images/ethereum_accounts.png)
+
+> To get our authority account from the console:
+```
+> let { authority } = await link({ clientId: '<your-client-id>', clientSecret: '<your-client-secret>' }).get('/authority');
+
+> authority
+"0x0b1e03386671185139db90eea81b13da31e22b50"
+```
+which matches our Link Ethereum default account!
+
+**Congrats! You have successfully deployed the Ownership contract to the Link private network and setup the Link APIs which we'll use in our Collectible Stamps App in the next activity!**
  
