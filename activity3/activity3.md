@@ -162,11 +162,55 @@ The Link Code IDE is in-sync with the API tab where you can see the correspondin
 
 ![Link Demo API UI](images/link_demo_api.png)
 
-The `Client ID` and `Client Secret` shown at the bottom of the screen are used to obtain a auth token used when making the API request. **Note: these values change when changing the display name or making any changes to the contract code** We will get into more details on using the client ID and secret later.
+The `Client ID` and `Client Secret` shown at the bottom of the screen are used to obtain a auth token used when making the API request. **Note: these values change when changing the display name or making any changes to the contract code**. 
 
 #### Interact with the Demo Code
-_TODO:_ Update process here once `yarn add @blockmason/link-sdk` added.
+We have built a simple Blockmason Link SDK for JavaScript that we will use going forwards to interact with Link. Details can be found here: https://www.npmjs.com/package/@blockmason/link-sdk
 
+> Use your Terminal window in VS Code to create a new folder called `link-demo` and install the Link SDK:
+```
+mkdir `link-demo` && cd `link-demo`
+
+npm install @blockmason/link-sdk
+```
+You can also install using `yarn`.
+
+The Link SDK uses `fetch()` to make HTTP requests, and is provided in most modern browsers but not in Node.js. Hence, we will use the node library `node-fetch`: https://www.npmjs.com/package/node-fetch. 
+```
+npm install node-fetch
+```
+Now run node in your `link-demo` folder and import both `link()` and `fetch()` as follows:
+```
+node
+
+> const fetch = require('node-fetch');
+> const { link } = require('@blockmason/link-sdk');
+
+> const demo = link({
+    clientId: '<your-client-id>',
+    clientSecret: '<your-client-secret>'
+}, { fetch });
+
+> demo
+{ get: [Function: get], post: [Function: post] }
+```
+
+Now your `demo` object is configured to use Link with your specific clientId and clientSecret and has `get` and `post` functions. From the Link application, the API tab tells us that the `GET /helloWorld` endpoint returns a `message` string object. Note - what we actually get back is **a promise**. There are various ways we can resolve promises but here we will create an async function wrapper and use the `async/await` syntax:
+```
+> async function helloWorld() {
+    const { message } = await demo.get('/helloWorld');
+    console.log(message); 
+}
+
+> helloWorld();
+Promise {
+  <pending>,
+  ... }
+> Hello, world!
+```
+which is what we'd expect the `helloWorld` function in the `Demo` smart contract to return to us!
+
+Now let's deploy and interact with our `Ownership` smart contract.
 
 #### Deploy Ownership contract to Link Private Network and Create APIs
 We're now going to deploy our Ownership smart contract to a blockchain using Link. **This is incredibly easy!**
@@ -186,14 +230,32 @@ Automatically, your API endpoints will update based on the new smart contract fu
 In the last workshop activity, we will see what manual steps are typically required to deploy a smart contract to a blockchain.
 
 #### Interact with the Ownership contract API endpoints
-Similar to how we interacted with the `Demo` contract API above, let's use the console to test a few of the API endpoints before we build out our app in the next activity.
+Similar to how we interacted with the `Demo` contract API above, let's use Node to test a few of the API endpoints before we build out our app in the next activity.
 
-> Try out the `GET /getOwners` endpoint in the console which should return an array of `0x000...` addresses since no owners are currently assigned:
+> Try out the `GET /getOwners` endpoint in the console which should return an array of `0x000...` addresses since no owners are currently assigned. Remember, your `clientId` and `clientSecret` will have changed with the code change. 
 ```
-> let { owners } = await link({ clientId: '<your-client-id>', clientSecret: '<your-client-secret>' }).get('/getOwners');
+> const ownership = link({
+    clientId: '<your-new-client-id>',
+    clientSecret: '<your-new-client-secret>'
+}, { fetch });
 
-> owners
-(8) ["0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000", "0x0000000000000000000000000000000000000000"]
+> async function getOwners() {
+    const { result } = await ownership.get('/getOwners');
+    console.log(result);
+}
+
+> getOwners()
+Promise {
+  <pending>,
+  ... }
+> [ '0x0000000000000000000000000000000000000000',
+  '0x0000000000000000000000000000000000000000',
+  '0x0000000000000000000000000000000000000000',
+  '0x0000000000000000000000000000000000000000',
+  '0x0000000000000000000000000000000000000000',
+  '0x0000000000000000000000000000000000000000',
+  '0x0000000000000000000000000000000000000000',
+  '0x0000000000000000000000000000000000000000' ]
 ```
 
 Also, let's check out the authority of the smart contract. Recall that the the contract authority is set in the contract constructor with:
@@ -208,9 +270,12 @@ With `msg.sender` being Link. You can find the default account/address used by L
 
 > To get our authority account from the console:
 ```
-> let { authority } = await link({ clientId: '<your-client-id>', clientSecret: '<your-client-secret>' }).get('/authority');
+> async function getAuthority() {
+    const { result } = await ownership.get('/authority);
+    console.log(result);
+}
 
-> authority
+> getAuthority()
 "0x0b1e03386671185139db90eea81b13da31e22b50"
 ```
 which matches our Link Ethereum default account!
