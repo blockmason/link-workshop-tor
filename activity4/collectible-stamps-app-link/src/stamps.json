@@ -3,48 +3,56 @@
     "id": 0,
     "name": "CN Tower",
     "picture": "images/skydome_cntower.png",
-    "fact": "At 553 meters (1,815 ft), one of the tallest free-standing structures in the world"
+    "fact": "At 553 meters (1,815 ft), one of the tallest free-standing structures in the world",
+    "price": 5
   },
   {
     "id": 1,
     "name": "Casa Loma",
     "picture": "images/casaloma.png",
-    "fact": "Only full sized castle in North America consisting of Edwardian decor, secret passageways, and elaborately decorated rooms"
+    "fact": "Only full sized castle in North America consisting of Edwardian decor, secret passageways, and elaborately decorated rooms",
+    "price": 7
   },
   {
     "id": 2,
     "name": "City Hall",
     "picture": "images/cityhall.png",
-    "fact": "One of the city's most distinctive landmarks, with the public space Nathan Phillips Square in front"
+    "fact": "One of the city's most distinctive landmarks, with the public space Nathan Phillips Square in front",
+    "price": 10
   },
   {
     "id": 3,
     "name": "Dundas Square",
     "picture": "images/dundas_sq.png",
-    "fact": "The city's newest and flashiest public square"
+    "fact": "The city's newest and flashiest public square",
+    "price": 7
   },
   {
     "id": 4,
     "name": "Toronto Islands",
     "picture": "images/toronto_islands.png",
-    "fact": "These islands form part of the largest car-free urban communities in North America"
+    "fact": "These islands form part of the largest car-free urban communities in North America",
+    "price": 5
   },
   {
     "id": 5,
     "name": "Hockey Hall of Fame",
     "picture": "images/hockeyhalloffame.png",
-    "fact": "Hall of Fame and museum holding exhibits about players, teams, NHL records, memorabilia and the Stanley Cup"
+    "fact": "Hall of Fame and museum holding exhibits about players, teams, NHL records, memorabilia and the Stanley Cup",
+    "price": 10
   },
   {
     "id": 6,
     "name": "Toronto Public Library",
     "picture": "images/tpl.png",
-    "fact": "With 12 million items and 100 branches, it is one of the largest neighbourhood-based library systems in the world"
+    "fact": "With 12 million items and 100 branches, it is one of the largest neighbourhood-based library systems in the world",
+    "price": 5
   },
   {
     "id": 7,
     "name": "Caribana",
     "picture": "images/caribana.png",
-    "fact": "The Toronto Caribbean Carnival is billed as North America's largest street festival"
+    "fact": "The Toronto Caribbean Carnival is billed as North America's largest street festival",
+    "price": 20
   }
 ]
