@@ -8,12 +8,17 @@ This activity will require you to:
 * Run a local ethereum blockchain using Ganache
 * Interact with the local blockchain through web3js functions and work with promises and basic callbacks
 * Send ETH cryptocurrency between 2 unlocked accounts on your local blockchain
+* Interact with a public blockchain using Infura (https://infura.io/)
 
 ## General activity notes
 * Discuss the difference between the current web3 release (v0.x.x) and the beta version (v1.0.0).
 * Discuss what is meant by a "web3 instance" and "web3 provider".  
 
 ### Setup
+> Ensure you have an account setup with Infura (https://infura.io/). Just create a sample project and you will get the API endpoints to access the various Ethereum networks:
+
+![Infura Endpoints](images/infura.png)
+
 Refer to the web3 documentation as needed - https://web3js.readthedocs.io/en/1.0/getting-started.html
 
 > Install the web3 dependency using the node package manager in your Terminal. The dependencies listed in`package.json` will be installed.
