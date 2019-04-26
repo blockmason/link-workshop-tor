@@ -280,5 +280,5 @@ With `msg.sender` being Link. You can find the default account/address used by L
 ```
 which matches our Link Ethereum default account!
 
-**Congrats! You have successfully deployed the Ownership contract to the Link private network and setup the Link APIs which we'll use in our Collectible Stamps App in the next activity!**
+**Congrats! You have successfully deployed the Ownership contract to the Link private network and setup the Link APIs which we'll use in our Collectible Stamps App in activity 4!**
  
