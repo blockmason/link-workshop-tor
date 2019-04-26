@@ -39,7 +39,7 @@ App = {
   },
 
   bindEvents: function() {
-    $(document).on('click', '.btn-own', App.handleOwn);
+    $(document).on('click', '.btn-own', App.handleOwnership);
   },
 
   accessToken: async function() {
@@ -59,7 +59,7 @@ App = {
     // Same as in activity 2
   },
   
-  handleOwn: async function(event) {
+  handleOwnership: async function(event) {
     event.preventDefault();
     // Assign ownership of stamps
   }
