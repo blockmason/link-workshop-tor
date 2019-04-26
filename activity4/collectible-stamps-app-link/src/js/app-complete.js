@@ -39,7 +39,7 @@ App = {
     },
   
     bindEvents: function() {
-      $(document).on('click', '.btn-own', App.handleOwn);
+      $(document).on('click', '.btn-own', App.handleOwnership);
     },
   
     accessToken: async function() {
@@ -110,7 +110,7 @@ App = {
       return accounts[0];
     },
     
-    handleOwn: async function(event) {
+    handleOwnership: async function(event) {
       event.preventDefault();
   
       const account = await App.fetchActiveAccount();

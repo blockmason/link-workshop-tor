@@ -78,7 +78,7 @@ App = {
   },
 
   bindEvents: function() {
-    $(document).on('click', '.btn-own', App.handleOwn);
+    $(document).on('click', '.btn-own', App.handleOwnership);
   },
 
   accessToken: async function() {
@@ -93,7 +93,7 @@ App = {
     // Same as in activity 2
   },
   
-  handleOwn: async function(event) {
+  handleOwnership: async function(event) {
     event.preventDefault();
     // Assign ownership of stamps
   }
@@ -242,7 +242,7 @@ markOwned: async function() {
 The way our app will set ownership is by posting the stamp ID and an address to the `setOwnership` API endpoint of the Ownership smart contract. Note we've setup a 'click' event listener in our `bindEvents` function:
 ```
 bindEvents: function() {
-  $(document).on('click', '.btn-own', App.handleOwn);
+  $(document).on('click', '.btn-own', App.handleOwnership);
 },
 ```
 
@@ -255,9 +255,9 @@ fetchActiveAccount: async function() {
 },
 ```
 
-> Then, in our `handleOwn` function, we fetch the active account, and if one exists, obtain the relevant stamp data:
+> Then, in our `handleOwnership` function, we fetch the active account, and if one exists, obtain the relevant stamp data:
 ```
-handleOwn: async function(event) {
+handleOwnership: async function(event) {
   event.preventDefault();
 
   const account = await App.fetchActiveAccount();
@@ -278,7 +278,7 @@ handleOwn: async function(event) {
 > Next, we fetch an access token and make our POST request using a try/catch statement:
 
 ```
-handleOwn: async function(event) {
+handleOwnership: async function(event) {
   event.preventDefault();
 
   const account = await App.fetchActiveAccount();
@@ -321,7 +321,7 @@ handleOwn: async function(event) {
 > Finally, if the response object indicates success, we update ownership by running the `markOwned()` function. Otherwise, we just reactivate the `Own` button. 
 
 ```
-handleOwn: async function(event) {
+handleOwnership: async function(event) {
   event.preventDefault();
 
   const account = await App.fetchActiveAccount();
@@ -369,18 +369,3 @@ handleOwn: async function(event) {
 }
 ```
 That's it! Give your app a try and see how it all works together. The full code is in `app-complete.js`. 
-
-### Stretch Exercise - Use Ethereum's Ropsten Testnet
-> As a stretch exercise, first deploy your `Ownership` contract to Ethereum's Ropsten testnet. You will need to use Infura for your network connector/gateway and fund your Link account with some test Ether (ETH) Go through the Link wizard at https://mason.link/projects/new to create a 'Ropsten' network object and an 'Infura' Network Connector. Then deploy your contract on that network.
-
-> Once deployed, create a new API that uses this Ropsten deployed contract.
-
-> Finally, update your `Collectible Stamps App` consumer to use the new API and now your App is configured with the public Ropsten testnet! Note: while transactions to the Link testnet take just a few seconds, transactions with the Ropsten testnet can take anywhere from 30-60 seconds. 
-
-
-
-
-
-
-
-

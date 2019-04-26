@@ -8,6 +8,7 @@ App = {
     linkAccount: '0xfc5f6c5de7eee80eef7040fe7d68e93ed559bf41',
     web3Provider: null,
     owners: [],
+    tokenConversionRate: 5,
   
     init: function() {
       // Load stamps.
@@ -20,7 +21,7 @@ App = {
           stampTemplate.find('img').attr('src', data[i].picture);
           stampTemplate.find('.stamp-fact').text(data[i].fact);
           stampTemplate.find('.btn-own').attr('data-id', data[i].id);
-          stampTemplate.find('.btn-value').text(data[i].price);
+          stampTemplate.find('.btn-value').text(data[i].price * App.tokenConversionRate);
   
           stampsRow.append(stampTemplate.html());
         }
