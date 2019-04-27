@@ -9,7 +9,8 @@ This activity will require you to:
 
 ## General activity notes
 * This exercise uses JavaScript Promises to handle Link API responses via the native async/await syntax. 
-* This exercise also uses web3 for continuity from activity 2 and also to use different wallet address via MetaMask. 
+* This exercise also uses web3 for continuity from activity 2 and also to use different wallet address via MetaMask.
+* Ownership data will be recorded on the Link Private Blockchain/Network 
 
 ### Setup
 > In the `activity4/collectible-stamps-app/` folder, run:

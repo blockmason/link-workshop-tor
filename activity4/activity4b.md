@@ -18,7 +18,7 @@ This activity will build upon the previous and require you to:
 Here, you can see all the available API endpoints for the custom token smart contract, as well as the authentication process with **a different `client_id` and `client_secret`**. 
 ![Link Token API](images/link_token_api.png)
 
-> Using MetaMask, send some of your custom ERC-20 token to the Link funding address managing the payment transfer to an existing stamp owner. We explain why shortly.
+> Using MetaMask, send some of your custom ERC-20 token to the Link funding address managing the payment transfers - we explain why shortly.
 ![MetaMask custom token transfer](images/metamask_custom_token_transfer.png)
 
 > Then, uncomment the following lines in your `index.html` after `<!-- Following is for the multi-chain exercise:  -->`
@@ -27,6 +27,8 @@ Here, you can see all the available API endpoints for the custom token smart con
 <div style='display: inline;'>CAD</div>
 ```
 > Lastly, again in `index.html`, change the script source from `app.js` to `app-multichain.js`. 
+
+> Now run `npm run dev` to get your application running on `localhost:3000`. What's different? 
 
 ### Expanding the Collectible Stamps App
 We will now incorporate your custom ERC-20 token into your app to record payments on the public Ropsten blockchain. The existing code from Part 1 of this activity has been slightly modified and the code to complete for Part 2 is shown in `src/js/app-multichain.js`. 
