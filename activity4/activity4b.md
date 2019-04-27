@@ -34,7 +34,7 @@ Here, you can see all the available API endpoints for the custom token smart con
 We will now incorporate your custom ERC-20 token into your app to record payments on the public Ropsten blockchain. The existing code from Part 1 of this activity has been slightly modified and the code to complete for Part 2 is shown in `src/js/app-multichain.js`. 
 
 A few changes to note:
-* We have 2 sets of client ID's and Secrets. This is due to the Ownership API's using one set of auth and the Token APIs using the other set. Note that the `accessToken(..)` function now takes in parameters so that we can use multiple auth credentials. 
+* We have 2 sets of client ID's and Secrets. This is due to the Ownership APIs using one set of auth and the Token APIs using the other set. Note that the `accessToken(..)` function now takes in the `clientId` and `clientSercret` as parameters so that we can use multiple auth credentials. 
   
 * A `tokenConversionRate` is set to convert the price from your custom token to CAD on the front-end. We do this because we want the end-user to interact with our DApp just as they would with any regular web App - from their perspective, **they do not even need to know that the underlying infrastructure consists of blockchains or that payments are facilited using your custom tokens.** The end-user would pay via credit card for example, and Link then manages the payments - this is why we sent our custom ERC-20 token to Link earlier. 
 
@@ -66,6 +66,7 @@ Completing this function should be fairly straight-forward. We will:
 ```
 
 * Note: the `result` object that we get back from the `POST /transfer` API call will actually be a status object that looks like this:
+```
 {
     body: (...)
     bodyUsed: false
@@ -77,6 +78,7 @@ Completing this function should be fairly straight-forward. We will:
     type: "cors"
     url: "https://api.block.mason.link/v1/transfer"
 }
+```
 
 So for now, we will have `transferPayment()` return `result['ok']` to get our bool value.
 
