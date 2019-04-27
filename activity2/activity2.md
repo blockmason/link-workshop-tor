@@ -123,7 +123,7 @@ The function takes in a callback with the result being the active MetaMask accou
 showActiveAccount: function() {
   // Load account data - display your account info on the webpage
   web3.eth.getAccounts(function(err, accounts) {
-    console.log(accounts);
+    console.log('my accounts are ', accounts);
     if (err === null) {
       App.account = accounts[0];
       $("#accountAddress").html("Your Account: " + accounts[0]);
