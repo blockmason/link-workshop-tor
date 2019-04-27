@@ -1,11 +1,11 @@
 App = {
     clientIdOwn: '77XVN8m-DyP4_n-G2FlhmumfLdysEZ04b6Gx4S1XfY0',
     clientSecretOwn: '01aUUi4HCWZ5WhN6y6rKpFR/IQtwJmG0C3sZ2Ex4IbhAyAUOUiLINl6Yc7/a0Zg',
-    clientIdToken: 'a27qXkjY5776qjdxFM-Jk-cxrytsvqjhyQqDKb8wTQ0',
-    clientSecretToken: 'gD+Y6Zr40/Z/UcdYe4Qw6vDgYEfmujkAAMoqEXxyhOd3Qa6hHlasnF5N9A6Tr6H',
+    clientIdToken: '',
+    clientSecretToken: '',
     authURL: 'https://api.block.mason.link/oauth2/token',
     baseURL: 'https://api.block.mason.link/v1/',
-    linkAccount: '0xfc5f6c5de7eee80eef7040fe7d68e93ed559bf41',
+    linkAccount: '',
     web3Provider: null,
     owners: [],
     tokenConversionRate: 5,
@@ -118,7 +118,6 @@ App = {
         });
         
         const data = await response.json();
-        console.log('setOwnership data is', data);
         
         if (data.success) {
           App.markOwned();
@@ -131,28 +130,7 @@ App = {
     },
 
     transferPayment: async function(receiver, amount) {
-      const url = App.baseURL.concat('transfer');
-      const token = await App.accessToken(App.clientIdToken, App.clientSecretToken);
-
-      const reqBody = {
-        "_to": receiver,
-        "_value": web3.toHex(amount*Math.pow(10, 18))
-      };
-
-      try {
-        const result = await fetch(url, {
-          method: "post",
-          headers: { 
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + token,
-          },
-          body: JSON.stringify(reqBody),
-        });
-        console.log('transfer result is', result);
-        return result['ok'];
-      } catch(err) {
-        console.log(err);
-      }
+      // To complete
     },
     
     handleOwnership: async function(event) {

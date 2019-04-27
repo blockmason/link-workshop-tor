@@ -1,6 +1,6 @@
-# Create your web DApp using Link (i.e. the 'easy' way)
+# Create your web DApp using Link (i.e. the 'easy' way) Part 1
 ## Goal
-In this activity, we will create a web application and use the Link APIs generated in the previous activity to interact with the blockchain. 
+In this activity, we will create a web application and use the Link Ownership APIs generated in the previous activity to record ownership on the blockchain. 
 
 ## Exercise
 This activity will require you to:
