@@ -148,8 +148,8 @@ contract Ownership {
 ```
 
 > Check that you can compile this contract in Remix without errors. 
-> 
-_TODO:_ Update image once Remix working again![Remix IDE](images/remix_ide.png)
+
+![Remix IDE](images/remix_ide.png)
 
 ### Using Link
 > Log into Link at https://mason.link and setup a sample organization if you haven't done so already.
