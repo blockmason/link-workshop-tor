@@ -10,12 +10,11 @@ This activity will require you to:
 
 ## General activity notes
 * It is expected workshop participants have some familiarity with Solidity. This workshop will primarily cover 'types' of Solidity objects (https://solidity.readthedocs.io/en/v0.5.7/types.html)
-* A dedicate `getOwners()` function is used instead of the automated getter that comes with the public declaration of the array variable `ownerOf` because the latter requires an array index to be passed to return a single value whereas the former will return the entire array.
-* The Link private network is Link's own internal blockchain.
+* A dedicated `getOwners()` function is used instead of the automatic getter that comes with the public declaration of the array variable `ownerOf` because the latter requires an array index to be passed to return a single value whereas the former will return the entire array.
+* The Link private network is Link's own internal blockchain. The terms network and blockchain will be used in an interchangeable context. 
 
 ### Setup
 > Ensure you have registered for a Link account at https://mason.link (email required)
-
 
 ### Smart Contract Design
 * The types of Solidity objects, in particular:
@@ -24,8 +23,8 @@ This activity will require you to:
   * Struts
   * `public` keyword and getters
 * `require` keyword
-* `memory` vs `storage`
-* Security Considerations
+* `memory` vs `storage` (https://medium.com/coinmonks/ethereum-solidity-memory-vs-storage-which-to-use-in-local-functions-72b593c3703a)
+* Security Considerations (Open up `contract_security.md`)
   * Private information and randomness
   * Re-entrancy
   * Checks-Effects-Interactions pattern
@@ -73,7 +72,6 @@ contract Ownership {
 
     function setOwnership(<pass some arguments here>) public {
         // Set ownership
-        return true;
     }
 
     function getOwners() public view returns (address[8] memory) {
@@ -162,10 +160,10 @@ The Link Code IDE is in-sync with the API tab where you can see the correspondin
 
 ![Link Demo API UI](images/link_demo_api.png)
 
-The `Client ID` and `Client Secret` shown at the bottom of the screen are used to obtain a auth token used when making the API request. **Note: these values change when changing the display name or making any changes to the contract code**. 
+The `Client ID` and `Client Secret` shown at the bottom of the screen are used to obtain an auth token used when making the API request. **Note: these values change when changing the display name or making any changes to the contract code**. 
 
 #### Interact with the Demo Code
-We have built a simple Blockmason Link SDK for JavaScript that we will use going forwards to interact with Link. Details can be found here: https://www.npmjs.com/package/@blockmason/link-sdk
+We have built a simple Blockmason Link SDK for JavaScript that we will use to interact with Link. Details can be found here: https://www.npmjs.com/package/@blockmason/link-sdk
 
 > Use your Terminal window in VS Code to create a new folder called `link-demo` and install the Link SDK:
 ```
@@ -195,7 +193,7 @@ node
 { get: [Function: get], post: [Function: post] }
 ```
 
-Now your `demo` object is configured to use Link with your specific clientId and clientSecret and has `get` and `post` functions. From the Link application, the API tab tells us that the `GET /helloWorld` endpoint returns a `message` string object. Note - what we actually get back is **a promise**. There are various ways we can resolve promises but here we will create an async function wrapper and use the `async/await` syntax:
+Now your `demo` object is configured to use Link with your specific clientId and clientSecret and has `get` and `post` functions. From the Link application, the API tab tells us that the `GET /helloWorld` endpoint returns a `message` string object. Note - what we actually get back is **a promise**. There are various ways we can resolve promises as we've done in the past activities, but here we will create an async function wrapper and use the `async/await` syntax:
 ```
 > async function helloWorld() {
     const { message } = await demo.get('/helloWorld');

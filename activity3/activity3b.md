@@ -1,10 +1,11 @@
 # Create your own Cryptocurrency Token using Blockmason Link
 ## Goal
-In this activity, we will create our own cryptocurrency smart contract and deploy it to the public Ethereum Ropsten network. We will then be able to use/trade this new token!
+In this activity, we will create our own cryptocurrency token smart contract and deploy it to the public Ethereum Ropsten network. We will then be able to use/trade this new token!
 
 ## Exercise
 This activity will require you to:
-* Use Link (https://mason.link) to deploy your token smart contract on the Ropsten network
+* Use the `ANYToken.sol` smart contract template to create an ERC-20 standard token (https://theethereum.wiki/w/index.php/ERC20_Token_Standard)
+* Use Link (https://mason.link) to deploy your token smart contract to the Ropsten network
 * Use MetaMask and designate a wallet address as the treasury for your cryptocurrency, holding the entire supply
 * Use https://ropsten.etherscan.io/ to see the details of the transaction
 * Use your Infura URL to connect to the Ropsten network
@@ -34,13 +35,13 @@ This is the smart contract which will be used to create and deploy your custom t
 ```
 > Change `ANY` to the currency symbol you want to use for your token. 
 
-> Now go back and update the name of your contract using the symbol you've selectee:
+> Now go back and update the name of your contract using the symbol you've selected:
 ```
 contract ANYToken {
 ...
 }
 ```
-Now in the contract `constructor`, you will select an Ethereum address to use for the treasury and set the currency supply. 
+Now in the contract `constructor`, you will select an Ethereum address to use as the treasury of your new token and set the currency supply. 
 
 > Select a MetaMask wallet address that you'd like to use (e.g. Account 1) and add that to:
 ```
@@ -105,7 +106,8 @@ Now the cool part - let's see the details of our token contract deployed on Rops
 
 ![Etherscan Token Details](images/etherscan_token_details.png)
 
-And finally to confirm, open up MetaMask under the same account that is the treasury of your newly minted custom token, and add your token using the contract address as follows:
+And finally to confirm, open up MetaMask under the same account/wallet address that you used as the treasury of your newly minted custom token, and add your token using the contract address as follows:
+
 ![MetaMask custom token 1](images/metamask_custom_token_1.png)
 
 ![MetaMask custom token 2](images/metamask_custom_token_2.png)
