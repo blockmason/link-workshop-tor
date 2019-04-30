@@ -30,7 +30,7 @@ contract ANYToken {
         owner = msg.sender;
 
         // Add your MetaMask wallet address here
-        treasury = '<your wallet address here>';
+        treasury = address('<your wallet address here>');
 
         //Select your total supply token
         totalSupply = 1000 * 10**uint(decimals);
