@@ -1,6 +1,6 @@
 App = {
-    clientId: 'Pfpww84_GYnlGpqfyeJmAbXL9mk3s2ItUG0jbbp96lM',
-    clientSecret: 'w7uKNRyIAWri/Ubem1pLinjgRrWyWLNcvD4jzEa03A1ZlZP79abYGB9/IOVvHHG',
+    clientId: '6pgCmlbKIXTwZwBPTluJwfODTo_Rci-Li1dVvo6TCLA',
+    clientSecret: 'X7QriFVqgJtMV6g/d7lrVj1WUkaoRSYvL36xClQibgRdFD2oqRKCSSUKlQKkX5A',
     authURL: 'https://api.block.mason.link/oauth2/token',
     baseURL: 'https://api.block.mason.link/v1/',
     web3Provider: null,

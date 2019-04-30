@@ -1,6 +1,6 @@
 # Create your web DApp using Link (i.e. the 'easy' way) Part 1
 ## Goal
-In this activity, we will create a web application and use the Link Ownership APIs generated in the previous activity to record ownership on the blockchain. 
+In this activity, we will create a web application and use the Link Ownership APIs generated in the previous activity to record ownership of an asset on the blockchain. 
 
 ## Exercise
 This activity will require you to:
@@ -9,8 +9,8 @@ This activity will require you to:
 
 ## General activity notes
 * This exercise uses JavaScript Promises to handle Link API responses via the native async/await syntax. 
-* This exercise also uses web3 for continuity from activity 2 and also to use different wallet address via MetaMask.
-* Ownership data will be recorded on the Link Private Blockchain/Network 
+* This exercise also uses web3 for continuity from activity 2 and to quickly access the different wallet addresses via MetaMask.
+* Ownership data will be recorded on the Link private network/blockchain.
 
 ### Setup
 > In the `activity4/collectible-stamps-app/` folder, run:
