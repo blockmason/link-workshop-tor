@@ -3,14 +3,14 @@ pragma solidity ^0.5.7;
 //Change Custom to your Token name
 contract ANYToken {
 
-    uint8 public constant decimals = 18;
-
     // Name your custom token
     string public constant name = "ANY TOKEN";
 
     //Token symbol
     string public constant symbol = "ANY";
 
+    uint8 public constant decimals = 18;
+    
     //Contract owner will be Link
     address public owner;
 
@@ -30,7 +30,7 @@ contract ANYToken {
         owner = msg.sender;
 
         // Add your MetaMask wallet address here
-        treasury = address('<your wallet address here>');
+        treasury = address(<paste wallet address here>);
 
         //Select your total supply token
         totalSupply = 1000 * 10**uint(decimals);
